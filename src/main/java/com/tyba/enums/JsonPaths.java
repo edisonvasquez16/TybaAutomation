@@ -2,8 +2,10 @@ package com.tyba.enums;
 
 public enum JsonPaths {
 
-    EXAMPLE_DATA("files/example-data.json", "data"),
-    USERS("files/users.json", "users"),
+    EXAMPLE_DATA("files/jsonfe/example-data.json", "data"),
+    USER_SHOPPING("files/jsonfe/users.json", "users"),
+    USERS_BOOKS("files/jsonapi/users.json", "users"),
+    BOOKS("files/jsonapi/books.json", "books"),
     ;
 
     private final String path;
