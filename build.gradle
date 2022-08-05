@@ -1,0 +1,105 @@
+defaultTasks 'clean', 'aggregate'
+group 'com.tyba.testautomation'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:3.2.5")
+        classpath "net.serenity-bdd:serenity-single-page-report:3.2.5"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    slf4jVersion = '1.7.7'
+    serenityCoreVersion = '3.2.5'
+    junitPVersion = '1.9.0'
+    junit5Version = '5.9.0'
+    assertJVersion = '3.23.1'
+    logbackVersion = '1.2.11'
+    jsonPath = '5.1.1'
+    lombokVersion = '1.18.24'
+    javaFakerVersion = '1.0.2'
+    poi = '5.2.2'
+    poiOmlx = '5.2.2'
+
+}
+
+dependencies {
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    implementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}",
+            "org.junit.platform:junit-platform-launcher:${junitPVersion}",
+            "org.junit.jupiter:junit-jupiter-engine:${junit5Version}",
+            "org.junit.jupiter:junit-jupiter-api:${junit5Version}",
+            "org.junit.vintage:junit-vintage-engine:${junit5Version}",
+            "org.assertj:assertj-core:${assertJVersion}",
+            "io.rest-assured:json-schema-validator:${jsonPath}",
+            "io.rest-assured:json-path:${jsonPath}",
+            "com.github.javafaker:javafaker:${javaFakerVersion}",
+            "org.apache.poi:poi:${poi}",
+            "org.apache.poi:poi-ooxml:${poiOmlx}"
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+clean {
+    delete "target"
+}
+
+test {
+    testLogging.showStandardStreams = true
+    maxParallelForks=18
+    useJUnitPlatform()
+    systemProperties System.getProperties()
+    if (project.hasProperty('excludeTests')) {
+        exclude project.property('excludeTests')
+    }
+}
+
+task smoke(type: Test) {
+    testLogging.showStandardStreams = true
+    maxParallelForks=18
+    useJUnitPlatform()
+    systemProperties System.getProperties()
+    systemProperty("tags", "smoke")
+}
+
+serenity {
+    reports = ["single-page-html"]
+    testRoot = "com.tyba.features"
+    requirementsBaseDir = "com.tyba.features"
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate)

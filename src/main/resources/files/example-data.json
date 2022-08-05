@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "totalItems": "9",
+      "totalAmount": "$6,483.93",
+      "subTotal": "$6,483.93",
+      "shipping": "$180.00",
+      "totalWithTaxes": "$6,663.93",
+      "products": [
+        {
+          "name": "HP ELITEPAD 1000 G2 TABLET",
+          "color": "GRAY",
+          "amount": "1,009.00",
+          "quantity": 2,
+          "totalAmountForItem": "2,018.00"
+        },
+        {
+          "name": "HP CHROMEBOOK 14 G1(ES)",
+          "color": "GRAY",
+          "amount": "1,261.99",
+          "quantity": 3,
+          "totalAmountForItem": "3,785.97"
+        },
+        {
+          "name": "HP ROAR PLUS WIRELESS SPEAKER",
+          "color": "BLACK",
+          "amount": "169.99",
+          "quantity": 4,
+          "totalAmountForItem": "679.96"
+        }
+      ]
+    }
+  ]
+}

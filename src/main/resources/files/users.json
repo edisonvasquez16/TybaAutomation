@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "key": 1,
+      "userName": "tybaUser",
+      "email": "@tyba.com",
+      "password": "Tyba123*",
+      "firstName": "Tyba",
+      "lastName": "User",
+      "phoneNumber": "3225566",
+      "country": "Colombia",
+      "city": "Popayan",
+      "address": "Calle 70BN",
+      "state": "Cauca",
+      "postalCode": "190001"
+    }
+  ]
+}
