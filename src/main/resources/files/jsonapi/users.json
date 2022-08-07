@@ -4,6 +4,11 @@
       "key": 1,
       "username": "admin",
       "password": "password123"
+    },
+    {
+      "key": 2,
+      "username": "admin",
+      "password": "incorrectPassword"
     }
   ]
 }

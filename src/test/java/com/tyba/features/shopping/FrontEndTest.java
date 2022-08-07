@@ -28,7 +28,7 @@ import static com.tyba.factories.shopping.UsersShoppingFactory.getUserWithRandom
 public class FrontEndTest extends BaseConfFrontEnd {
 
     @Test
-    @WithTagValuesOf({"purchase-products:ESC:1", "smoke"})
+    @WithTagValuesOf({"all","purchase-products:ESC:1", "regression"})
     public void validateRegisterAndPurchaseProducts() {
         UserShopping user = getUserWithRandomInfo(1);
         ExampleData data = getDataByKey(1);

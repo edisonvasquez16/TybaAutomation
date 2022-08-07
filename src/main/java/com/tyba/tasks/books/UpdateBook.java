@@ -37,8 +37,5 @@ public class UpdateBook implements Task {
                                                 .pathParam("id", actor.recall(BOOKING_ID.toString()))
                         )
         );
-        actor.should(
-                SeeThatThe.bookInformationUpdated(book, BOOK_UPDATE)
-        );
     }
 }

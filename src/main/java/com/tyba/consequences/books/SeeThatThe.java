@@ -14,15 +14,27 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class SeeThatThe {
 
     public static Consequence statusResponseCodeOk() {
-        return seeThat("status response", response ->
+        return seeThat("status code response", response ->
                         SerenityRest
                                 .lastResponse()
                                 .statusCode(),
                 equalTo(SC_OK));
     }
 
+    public static Consequence[] incorrectToken() {
+        return new Consequence[]{
+                statusResponseCodeOk(),
+                seeThat("token generated", response ->
+                                SerenityRest
+                                        .lastResponse()
+                                        .jsonPath()
+                                        .getString("reason"),
+                        equalTo("Bad credentials"))
+        };
+    }
+
     public static Consequence correctSchema(PathSchemas pathSchema) {
-        return seeThat("Schema validation ".concat(pathSchema.name()), response ->
+        return seeThat("schema validation ".concat(pathSchema.name()), response ->
                         SerenityRest.lastResponse().asString(),
                 JsonSchemaValidator
                         .matchesJsonSchemaInClasspath(pathSchema.getPath()));

@@ -1,6 +1,5 @@
 package com.tyba.tasks.books;
 
-import com.tyba.consequences.books.SeeThatThe;
 import com.tyba.models.books.UserBook;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
@@ -10,7 +9,6 @@ import net.serenitybdd.screenplay.rest.interactions.Post;
 
 import static com.tyba.enums.Memory.TOKEN;
 import static com.tyba.enums.books.EndPoints.POST_TOKEN;
-import static com.tyba.enums.books.PathSchemas.TOKEN_SC;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class GetToken implements Task {
@@ -34,10 +32,6 @@ public class GetToken implements Task {
                                         request.contentType(ContentType.JSON)
                                                 .body(user)
                         )
-        );
-        actor.should(
-                SeeThatThe.statusResponseCodeOk(),
-                SeeThatThe.correctSchema(TOKEN_SC)
         );
         actor.remember(TOKEN.toString(), SerenityRest.lastResponse().jsonPath().getString("token"));
     }

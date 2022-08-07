@@ -91,6 +91,14 @@ task smoke(type: Test) {
     systemProperty("tags", "smoke")
 }
 
+task all(type: Test) {
+    testLogging.showStandardStreams = true
+    maxParallelForks=18
+    useJUnitPlatform()
+    systemProperties System.getProperties()
+    systemProperty("tags", "all")
+}
+
 serenity {
     reports = ["single-page-html"]
     testRoot = "com.tyba.features"
