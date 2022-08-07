@@ -38,8 +38,7 @@ public class CreateBook implements Task {
                         )
         );
         actor.should(
-                SeeThatThe.statusResponseCodeOk(),
-                SeeThatThe.correctSchema(BOOK_CREATED)
+                SeeThatThe.bookInformationCreated(book, BOOK_CREATED)
         );
         actor.remember(BOOKING_ID.toString(), SerenityRest.lastResponse().jsonPath().getString("bookingid"));
     }

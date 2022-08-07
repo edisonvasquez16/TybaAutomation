@@ -38,8 +38,7 @@ public class UpdateBook implements Task {
                         )
         );
         actor.should(
-                SeeThatThe.statusResponseCodeOk(),
-                SeeThatThe.correctSchema(BOOK_UPDATE)
+                SeeThatThe.bookInformationUpdated(book, BOOK_UPDATE)
         );
     }
 }

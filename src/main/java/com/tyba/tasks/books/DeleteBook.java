@@ -30,7 +30,7 @@ public class DeleteBook implements Task {
                         )
         );
         actor.should(
-                SeeThatThe.statusResponseDeleteOk()
+                SeeThatThe.statusResponseCodeOk()
         );
     }
 }

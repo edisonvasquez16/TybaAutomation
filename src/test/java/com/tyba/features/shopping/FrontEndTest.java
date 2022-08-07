@@ -1,4 +1,4 @@
-package com.tyba.features;
+package com.tyba.features.shopping;
 
 import com.tyba.conf.BaseConfFrontEnd;
 import com.tyba.consequences.shopping.SeeThatFinishPayment;
@@ -24,7 +24,7 @@ import static com.tyba.factories.shopping.UsersShoppingFactory.getUserWithRandom
 @Narrative(text = {"As a user of Tyba",
         "I want to be able to purchase section",
         "To be able to purchase a products"})
-@WithTag("TybaExample")
+@WithTag("TybaExamplePurchase")
 public class FrontEndTest extends BaseConfFrontEnd {
 
     @Test

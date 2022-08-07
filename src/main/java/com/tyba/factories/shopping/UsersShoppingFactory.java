@@ -1,6 +1,5 @@
 package com.tyba.factories.shopping;
 
-import com.github.javafaker.Faker;
 import com.tyba.exceptions.DataNotFoundException;
 import com.tyba.models.shopping.UserShopping;
 import lombok.SneakyThrows;
@@ -9,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static com.tyba.enums.JsonPaths.USER_SHOPPING;
 import static io.restassured.path.json.JsonPath.from;
@@ -38,7 +38,7 @@ public class UsersShoppingFactory {
 
     public static UserShopping getUserWithRandomInfo(int key) {
         UserShopping user = getUserByKey(key);
-        String rdm = Faker.instance().random().nextInt(100, 999).toString();
+        String rdm = String.valueOf(new Random().nextInt(1000));
         user.setUserName(user.getUserName().concat(rdm));
         user.setFirstName(user.getFirstName().concat(rdm));
         user.setEmail(user.getFirstName().concat(user.getEmail()));
